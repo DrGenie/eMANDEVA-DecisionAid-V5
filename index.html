@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>eMANDEVAL Future &ndash; Vaccine Mandate Decision Aid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1C3D5A" />
+  <meta name="description" content="Evidence-informed decision aid for exploring future vaccine mandate designs across Australia, France and Italy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Site header -->
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="9" fill="url(#hgrd)"/>
+            <path d="M18 8v4M18 24v4M8 18h4M24 18h4" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="5.5" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="2" fill="#fff"/>
+            <defs><linearGradient id="hgrd" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#1C3D5A"/><stop offset="1" stop-color="#0B7B6E"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-eyebrow">Public health policy tool</span>
+          <span class="brand-name">eMANDEVAL Future</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="version-pill">v3.0.0</span>
+        <button id="btn-share-link" class="hdr-btn" type="button" aria-label="Copy shareable link to current configuration">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span>Share</span>
+        </button>
+        <button id="btn-presentation-mode" class="hdr-btn" type="button" aria-label="Toggle presentation mode">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Present</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Unapplied changes banner -->
+  <div id="unapplied-banner" class="banner-strip" role="alert" aria-live="polite" hidden>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>You have unapplied changes.</span>
+    <button id="btn-apply-all" class="btn btn-sm btn-primary" type="button">Apply all</button>
+    <button id="btn-dismiss-banner" class="banner-dismiss" type="button" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <!-- Workflow stepper -->
+  <div id="workflow-stepper" class="stepper" aria-label="Workflow progress" role="navigation">
+    <div class="stepper-inner">
+      <div class="stepper-step" id="step-settings" data-step="1">
+        <button class="stepper-btn" type="button" onclick="document.querySelector('[data-tab=tab-settings]').click()">
+          <div class="stepper-circle"><span class="step-num">1</span></div>
+          <div class="stepper-label">Settings</div>
+        </button>
+        <div class="stepper-line"></div>
+      </div>
+      <div class="stepper-step" id="step-config" data-step="2">
+        <button class="stepper-btn" type="button" onclick="document.querySelector('[data-tab=tab-config]').click()">
+          <div class="stepper-circle"><span class="step-num">2</span></div>
+          <div class="stepper-label">Configure</div>
+        </button>
+        <div class="stepper-line"></div>
+      </div>
+      <div class="stepper-step" id="step-costs" data-step="3">
+        <button class="stepper-btn" type="button" onclick="document.querySelector('[data-tab=tab-costs]').click()">
+          <div class="stepper-circle"><span class="step-num">3</span></div>
+          <div class="stepper-label">Costing</div>
+        </button>
+        <div class="stepper-line"></div>
+      </div>
+      <div class="stepper-step" id="step-results" data-step="4">
+        <button class="stepper-btn" type="button" onclick="document.querySelector('[data-tab=tab-results]').click()">
+          <div class="stepper-circle"><span class="step-num">4</span></div>
+          <div class="stepper-label">Results</div>
+        </button>
+        <div class="stepper-line"></div>
+      </div>
+      <div class="stepper-step stepper-last" id="step-export" data-step="5">
+        <button class="stepper-btn" type="button" onclick="document.querySelector('[data-tab=tab-scenarios]').click()">
+          <div class="stepper-circle"><span class="step-num">5</span></div>
+          <div class="stepper-label">Export</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab navigation -->
+  <nav class="tab-nav" aria-label="Main navigation">
+    <div class="tab-nav-scroll">
+      <button class="tab-btn active" data-tab="tab-intro">Overview</button>
+      <button class="tab-btn" data-tab="tab-features">Design features</button>
+      <button class="tab-btn tab-step" data-tab="tab-settings" data-stepref="step-settings">1&nbsp;Settings</button>
+      <button class="tab-btn tab-step" data-tab="tab-config" data-stepref="step-config">2&nbsp;Configuration</button>
+      <button class="tab-btn tab-step" data-tab="tab-costs" data-stepref="step-costs">3&nbsp;Costing</button>
+      <button class="tab-btn tab-step" data-tab="tab-results" data-stepref="step-results">4&nbsp;Results</button>
+      <button class="tab-btn tab-step" data-tab="tab-scenarios" data-stepref="step-export">5&nbsp;Scenarios</button>
+      <button class="tab-btn" data-tab="tab-briefings">Briefings &amp; AI</button>
+      <button class="tab-btn" data-tab="tab-appendix">Appendix</button>
+    </div>
+  </nav>
+
+  <main id="main-content" class="site-main">
+
+    <!-- ===== Overview ===== -->
+    <section id="tab-intro" class="tab-pane active">
+      <div class="hero">
+        <div class="hero-body">
+          <div class="hero-label-pill">Vaccine mandate decision aid</div>
+          <h1 class="hero-title">Evidence-based mandate analysis for Australia, France and Italy</h1>
+          <p class="hero-sub">Combine public preference data, epidemiological assumptions and implementation costs to evaluate potential future vaccine mandate designs &mdash; in one structured, auditable workflow.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" type="button" onclick="document.querySelector('[data-tab=tab-settings]').click()">Start analysis &rarr;</button>
+            <button class="btn btn-outline btn-lg" type="button" onclick="document.querySelector('[data-tab=tab-features]').click()">How it works</button>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card"><div class="stat-n">3</div><div class="stat-lbl">Countries</div></div>
+          <div class="stat-card"><div class="stat-n">AU·FR·IT</div><div class="stat-lbl">Australia, France, Italy</div></div>
+          <div class="stat-card"><div class="stat-n">2</div><div class="stat-lbl">Outbreak frames</div></div>
+          <div class="stat-card"><div class="stat-n">4</div><div class="stat-lbl">Design attributes</div></div>
+        </div>
+      </div>
+
+      <div class="info-callout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Results from the preference study are indicative. This tool does not replace legal, ethical or political judgement.
+      </div>
+
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3>Public support</h3>
+          <p>Mixed logit model-based predicted support from 1,000 draws, reproducible across sessions.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3>Health impact</h3>
+          <p>Translate expected lives saved per 100,000 into monetised benefits using your benefit metric.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <h3>Cost-benefit analysis</h3>
+          <p>Enter costs or load country defaults to see net benefit, BCR and sensitivity ranges.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3>Scenario comparison</h3>
+          <p>Save, pin and compare up to three scenarios via a radar chart and traffic-light dashboard.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Equity notes</h3>
+          <p>Document affected groups, sectors and equity concerns with each scenario for transparent appraisal.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <h3>AI briefings</h3>
+          <p>Generate policy briefings in-situ with Claude (optional), or copy prompts for Copilot / ChatGPT.</p>
+        </div>
+      </div>
+
+      <div class="method-section">
+        <h2>Data and methods</h2>
+        <p>Model-based public support is derived from mixed logit estimates of stated preferences for potential future vaccine mandate designs in Australia, France and Italy under mild and severe outbreak frames. Support is computed as the probability of choosing a mandate over an opt-out option, averaged over 1,000 draws from the estimated preference distributions (fixed random seed for reproducibility).</p>
+        <p>Cost and benefit inputs are indicative and should be aligned with country-specific regulatory impact analysis guidance before formal use. Country presets allow you to restore recommended defaults or align the tool with updated national guidance.</p>
+      </div>
+    </section>
+
+    <!-- ===== Design features ===== -->
+    <section id="tab-features" class="tab-pane">
+      <div class="page-header">
+        <h1>Mandate design attributes</h1>
+        <p>The discrete choice experiment asked members of the public in Australia, France and Italy to choose between potential future vaccine mandate options and an opt-out. Each option was described using the four attributes below.</p>
+      </div>
+      <div class="attr-cards">
+        <div class="attr-card">
+          <div class="attr-card-hd"><span class="attr-num">A</span><h3>Scope of mandate</h3></div>
+          <div class="attr-opts">
+            <div class="attr-opt"><span class="attr-tag">Narrower</span><strong>High-risk occupations only</strong><p>Healthcare workers, emergency responders and similarly exposed groups must be vaccinated.</p></div>
+            <div class="attr-opt"><span class="attr-tag">Broader</span><strong>All occupations &amp; public spaces</strong><p>Everyone working or entering public venues (cinemas, malls, restaurants, transport) must be vaccinated.</p></div>
+          </div>
+        </div>
+        <div class="attr-card">
+          <div class="attr-card-hd"><span class="attr-num">B</span><h3>Exemption policy</h3></div>
+          <div class="attr-opts">
+            <div class="attr-opt"><span class="attr-tag">Strictest</span><strong>Medical only</strong><p>Only those with certified medical reasons can opt out.</p></div>
+            <div class="attr-opt"><span class="attr-tag">Moderate</span><strong>Medical + religious</strong><p>Exemptions for medical reasons or documented religious beliefs (with verification).</p></div>
+            <div class="attr-opt"><span class="attr-tag">Broadest</span><strong>Medical + religious + personal belief</strong><p>Broad opt-out allowed on medical, religious or personal grounds.</p></div>
+          </div>
+        </div>
+        <div class="attr-card">
+          <div class="attr-card-hd"><span class="attr-num">C</span><h3>Coverage threshold to lift mandate</h3></div>
+          <div class="attr-opts">
+            <div class="attr-opt"><span class="attr-tag">50%</span><strong>Half vaccinated</strong><p>Mandate lifted once about half of the population is vaccinated.</p></div>
+            <div class="attr-opt"><span class="attr-tag">70%</span><strong>Most vaccinated</strong><p>Mandate lifted once most people are vaccinated and near-normal life can resume.</p></div>
+            <div class="attr-opt"><span class="attr-tag">90%</span><strong>Near-universal</strong><p>Mandate lifted only once almost everyone is vaccinated.</p></div>
+          </div>
+        </div>
+        <div class="attr-card">
+          <div class="attr-card-hd"><span class="attr-num">D</span><h3>Expected lives saved</h3></div>
+          <div class="attr-range">
+            <div class="range-item"><span class="range-n">10</span><span class="range-u">per 100k</span></div>
+            <div class="range-arrow">&rarr;</div>
+            <div class="range-item"><span class="range-n">25</span><span class="range-u">per 100k</span></div>
+            <div class="range-arrow">&rarr;</div>
+            <div class="range-item"><span class="range-n">35</span><span class="range-u">per 100k</span></div>
+            <div class="range-arrow">&rarr;</div>
+            <div class="range-item"><span class="range-n">40</span><span class="range-u">per 100k</span></div>
+          </div>
+          <p class="attr-note">The tool accepts 0&ndash;100, but the study range is 10&ndash;40 per 100,000. Values outside this range are extrapolations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Step 1: Settings ===== -->
+    <section id="tab-settings" class="tab-pane">
+      <div class="page-header">
+        <div class="step-pill">Step 1</div>
+        <h1>Settings</h1>
+        <p>Define the analysis horizon, population and benefit metric. These settings apply to all scenarios.</p>
+      </div>
+      <div class="form-card">
+        <h2>Analysis parameters</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="setting-horizon">Analysis horizon (years) <span class="info-icon" tabindex="0" data-tooltip="Number of years over which costs and benefits are considered.">?</span></label>
+            <input type="number" id="setting-horizon" min="0.25" step="0.25" value="1" />
+          </div>
+          <div class="field">
+            <label for="setting-population">Population covered <span class="info-icon" tabindex="0" data-tooltip="Number of people exposed to the mandate.">?</span></label>
+            <input type="number" id="setting-population" min="0" step="10000" value="1000000" />
+          </div>
+          <div class="field">
+            <label for="setting-currency">Currency label <span class="info-icon" tabindex="0" data-tooltip="Label for monetary results (e.g. AUD, EUR). Auto-set when you choose a country.">?</span></label>
+            <input type="text" id="setting-currency" value="local currency units" />
+          </div>
+          <div class="field">
+            <label for="setting-vsl-metric">Benefit metric <span class="info-icon" tabindex="0" data-tooltip="How the monetary value per life saved is interpreted.">?</span></label>
+            <select id="setting-vsl-metric">
+              <option value="vsl" selected>Value of statistical life (VSL)</option>
+              <option value="vsly">Value of a statistical life-year (VSLY)</option>
+              <option value="qalys">Monetary value per QALY gained</option>
+              <option value="healthsys">Health system cost savings per life saved</option>
+              <option value="hosp">Expected hospitalisations averted</option>
+              <option value="icu">Expected ICU admissions averted</option>
+              <option value="workdays">Expected working days saved</option>
+            </select>
+          </div>
+          <div class="field field-wide">
+            <label for="setting-vsl">Value per life saved <span class="info-icon" tabindex="0" data-tooltip="Monetary value attached to each life saved, consistent with your benefit metric and regulatory guidance.">?</span></label>
+            <input type="number" id="setting-vsl" min="0" step="100000" value="5400000" />
+            <div id="vsl-calibration-note" class="field-note"></div>
+          </div>
+        </div>
+        <h3>Additional health metrics <span class="optional-tag">Optional</span></h3>
+        <p class="field-note" style="margin-bottom:12px">Convert lives saved into hospitalisations, ICU admissions and working days for the results narrative.</p>
+        <div class="field-grid">
+          <div class="field"><label for="metric-hosp-per-life">Hospitalisations averted per life saved <span class="info-icon" tabindex="0" data-tooltip="E.g. enter 8 if each life saved corresponds to 8 hospital admissions averted.">?</span></label><input type="number" id="metric-hosp-per-life" min="0" step="0.1" value="8" /></div>
+          <div class="field"><label for="metric-hosp-per100k">Override: hospitalisations per 100,000 (optional)</label><input type="number" id="metric-hosp-per100k" min="0" step="1" placeholder="Leave blank to use conversion" /></div>
+          <div class="field"><label for="metric-icu-per-life">ICU admissions averted per life saved <span class="info-icon" tabindex="0" data-tooltip="E.g. enter 10 if each life saved corresponds to 10 ICU admissions averted.">?</span></label><input type="number" id="metric-icu-per-life" min="0" step="0.1" value="10" /></div>
+          <div class="field"><label for="metric-icu-per100k">Override: ICU admissions per 100,000 (optional)</label><input type="number" id="metric-icu-per100k" min="0" step="1" placeholder="Leave blank to use conversion" /></div>
+          <div class="field"><label for="metric-workdays-per-life">Working days saved per life saved <span class="info-icon" tabindex="0" data-tooltip="Approximate working days preserved per life saved.">?</span></label><input type="number" id="metric-workdays-per-life" min="0" step="1" value="180" /></div>
+          <div class="field"><label for="metric-workdays-per100k">Override: working days per 100,000 (optional)</label><input type="number" id="metric-workdays-per100k" min="0" step="10" placeholder="Leave blank to use conversion" /></div>
+        </div>
+        <div class="action-row">
+          <button id="btn-apply-settings" class="btn btn-primary" type="button">Apply settings</button>
+          <button id="btn-restore-country-defaults" class="btn btn-outline" type="button">Restore country defaults</button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>Traffic-light thresholds</h2>
+        <p class="field-note" style="margin-bottom:12px">Adjust the cutoffs used in status chips and traffic-light stripes. Defaults: 50%/70% for support, 0.8/1.0 for BCR. Saved in your browser.</p>
+        <div class="field-grid">
+          <div class="field"><label for="thresh-support-low">Support: low/medium boundary (%) <span class="info-icon" tabindex="0" data-tooltip="Below this value: low (red). Above: medium (amber).">?</span></label><input type="number" id="thresh-support-low" min="0" max="100" step="1" value="50" /></div>
+          <div class="field"><label for="thresh-support-high">Support: medium/high boundary (%) <span class="info-icon" tabindex="0" data-tooltip="Above this value: high (green).">?</span></label><input type="number" id="thresh-support-high" min="0" max="100" step="1" value="70" /></div>
+          <div class="field"><label for="thresh-bcr-low">BCR: low/medium boundary <span class="info-icon" tabindex="0" data-tooltip="Below this value: unfavourable (red).">?</span></label><input type="number" id="thresh-bcr-low" min="0" step="0.05" value="0.8" /></div>
+          <div class="field"><label for="thresh-bcr-high">BCR: medium/high boundary <span class="info-icon" tabindex="0" data-tooltip="Above this value: favourable (green).">?</span></label><input type="number" id="thresh-bcr-high" min="0" step="0.05" value="1.0" /></div>
+        </div>
+        <div class="action-row"><button id="btn-apply-thresholds" class="btn btn-outline" type="button">Apply thresholds</button></div>
+      </div>
+
+      <div class="form-card">
+        <h2>Value calibration <span class="optional-tag">Optional</span></h2>
+        <p class="field-note" style="margin-bottom:12px">Store updated ministry guidance on the value of a statistical life for this browser session.</p>
+        <div class="field-grid">
+          <div class="field"><label for="calibration-vsl-new">New official value per life saved</label><input type="number" id="calibration-vsl-new" min="0" step="100000" placeholder="e.g. 5400000" /></div>
+          <div class="field"><label for="calibration-note-year">Guideline year</label><input type="number" id="calibration-note-year" min="2000" max="2100" step="1" placeholder="e.g. 2029" /></div>
+        </div>
+        <div class="action-row"><button id="btn-apply-calibration" class="btn btn-outline" type="button">Save as browser default</button></div>
+        <p id="calibration-status" class="field-note" style="margin-top:8px"></p>
+      </div>
+    </section>
+
+    <!-- ===== Step 2: Configuration ===== -->
+    <section id="tab-config" class="tab-pane">
+      <div class="page-header">
+        <div class="step-pill">Step 2</div>
+        <h1>Mandate configuration</h1>
+        <p>Select a country, outbreak scenario and mandate design. The tool calculates the predicted probability that people would support this mandate over no mandate.</p>
+      </div>
+      <div class="form-card">
+        <h2>Mandate design</h2>
+        <div class="field-grid">
+          <div class="field"><label for="cfg-country">Country <span class="info-icon" tabindex="0" data-tooltip="Country whose preference estimates are used.">?</span></label><select id="cfg-country"><option value="AU">Australia</option><option value="FR">France</option><option value="IT">Italy</option></select></div>
+          <div class="field"><label for="cfg-outbreak">Outbreak scenario <span class="info-icon" tabindex="0" data-tooltip="Frame under which respondents evaluated the mandate: mild/endemic or severe outbreak.">?</span></label><select id="cfg-outbreak"><option value="mild">Mild / endemic</option><option value="severe">Severe outbreak</option></select></div>
+          <div class="field"><label for="cfg-scope">Scope of mandate <span class="info-icon" tabindex="0" data-tooltip="Who is subject to the mandate.">?</span></label><select id="cfg-scope"><option value="highrisk">High-risk occupations only</option><option value="all">All occupations &amp; public spaces</option></select></div>
+          <div class="field"><label for="cfg-exemptions">Exemption policy <span class="info-icon" tabindex="0" data-tooltip="Criteria under which people can be exempted.">?</span></label><select id="cfg-exemptions"><option value="medical">Medical only</option><option value="medrel">Medical + religious</option><option value="medrelpers">Medical + religious + personal belief</option></select></div>
+          <div class="field"><label for="cfg-coverage">Coverage threshold to lift mandate <span class="info-icon" tabindex="0" data-tooltip="Vaccination coverage at which the mandate is lifted.">?</span></label><select id="cfg-coverage"><option value="0.5">50% population vaccinated</option><option value="0.7">70% population vaccinated</option><option value="0.9">90% population vaccinated</option></select></div>
+          <div class="field field-wide">
+            <label for="cfg-lives">Expected lives saved per 100,000 <span class="info-icon" tabindex="0" data-tooltip="Lives saved per 100,000 people. Study range: 10&ndash;40.">?</span></label>
+            <div class="slider-wrap">
+              <input type="range" id="cfg-lives" min="0" max="100" step="1" value="25" />
+              <span id="cfg-lives-display" class="slider-val">25</span>
+            </div>
+            <div class="field-note">Realistic study range: 10&ndash;40 per 100,000. Values outside this range are extrapolations.</div>
+          </div>
+        </div>
+        <div class="action-row">
+          <button id="btn-apply-config" class="btn btn-primary" type="button">Apply configuration</button>
+          <button id="btn-save-scenario" class="btn btn-outline" type="button">Save scenario</button>
+          <button id="btn-go-to-costs" class="btn btn-ghost" type="button">Next: Costing &rarr;</button>
+        </div>
+      </div>
+
+      <div class="form-card accent-card">
+        <h2>Policy question &amp; decision lens</h2>
+        <div class="field-grid">
+          <div class="field field-wide"><label for="policy-question-select">Main policy question <span class="info-icon" tabindex="0" data-tooltip="The interpretation guidance adapts to your chosen lens. The underlying model does not change.">?</span></label><select id="policy-question-select"><option value="none" selected>General exploration</option><option value="strict_vs_lenient">Compare strict vs. lenient mandate</option><option value="max_support_bcr">Maximise support subject to a minimum BCR</option><option value="max_bcr_support">Maximise BCR subject to a minimum support threshold</option><option value="compare_countries">Compare a similar mandate across countries</option></select></div>
+          <div class="field"><label for="policy-support-min">Minimum support threshold (%) <span class="info-icon" tabindex="0" data-tooltip="Optional: minimum acceptable public support level.">?</span></label><input type="number" id="policy-support-min" min="0" max="100" step="1" placeholder="e.g. 60" /></div>
+          <div class="field"><label for="policy-bcr-min">Minimum benefit-cost ratio <span class="info-icon" tabindex="0" data-tooltip="Optional: minimum acceptable BCR.">?</span></label><input type="number" id="policy-bcr-min" min="0" step="0.1" placeholder="e.g. 1.0" /></div>
+        </div>
+        <div id="policy-guidance-text" class="guidance-box">Choose a decision lens to see tailored guidance here.</div>
+      </div>
+
+      <div class="form-card">
+        <h2>Equity &amp; distributional notes <span class="optional-tag">Optional</span></h2>
+        <p class="field-note" style="margin-bottom:12px">Record which groups or sectors are most affected. Notes are saved with each scenario and included in exports and AI prompts.</p>
+        <div class="field-grid">
+          <div class="field"><label for="dist-groups">Groups most affected <span class="info-icon" tabindex="0" data-tooltip="E.g. older adults, low-income workers, minority communities.">?</span></label><textarea id="dist-groups" rows="2" placeholder="e.g. Low-income workers, elderly populations..."></textarea></div>
+          <div class="field"><label for="dist-sectors">Sectors most exposed <span class="info-icon" tabindex="0" data-tooltip="E.g. hospitality, healthcare, education, transport.">?</span></label><textarea id="dist-sectors" rows="2" placeholder="e.g. Hospitality, healthcare..."></textarea></div>
+          <div class="field field-wide"><label for="dist-equity-concerns">Equity concerns <span class="info-icon" tabindex="0" data-tooltip="Short notes on fairness issues, enforcement risks or access barriers.">?</span></label><textarea id="dist-equity-concerns" rows="3" placeholder="e.g. Enforcement may disproportionately affect..."></textarea></div>
+        </div>
+      </div>
+
+      <div class="summary-panel">
+        <h2>Configuration at a glance</h2>
+        <div id="config-empty-state" class="empty-state">
+          <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <p class="empty-title">No configuration applied yet</p>
+          <p class="empty-body">Fill in the mandate design above and click <strong>Apply configuration</strong> to see predicted support and a summary.</p>
+        </div>
+        <div id="config-summary-content" style="display:none">
+          <div class="kv-grid">
+            <div class="kv-row"><div class="kv-label">Country</div><div id="summary-country" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Outbreak</div><div id="summary-outbreak" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Scope</div><div id="summary-scope" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Exemptions</div><div id="summary-exemptions" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Coverage threshold</div><div id="summary-coverage" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Lives saved (per 100k)</div><div id="summary-lives" class="kv-val">--</div></div>
+            <div class="kv-row kv-highlight"><div class="kv-label">Predicted public support <span class="info-icon" tabindex="0" data-tooltip="Predicted probability of mandate support from the mixed logit model.">?</span></div><div id="summary-support" class="kv-val kv-large">--</div></div>
+          </div>
+          <div class="chip-strip">
+            <span id="status-support" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> Support: pending</span>
+            <span id="status-bcr" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> BCR: pending</span>
+            <span id="status-data" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> Data: pending</span>
+          </div>
+          <div id="headlineRecommendation" class="headline-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Step 3: Costing ===== -->
+    <section id="tab-costs" class="tab-pane">
+      <div class="page-header">
+        <div class="step-pill">Step 3</div>
+        <h1>Costing inputs</h1>
+        <p>Enter indicative costs or load country-scaled defaults. Costs are interpreted over the analysis horizon in Step 1.</p>
+      </div>
+      <div class="cost-tip" id="cost-hint-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Apply a configuration in Step 2 first, then click <strong>Load default costs</strong> for country-scaled starting values. All fields start at zero.
+      </div>
+      <div class="form-card">
+        <h2>Cost components</h2>
+        <div class="field-grid">
+          <div class="field"><label for="cost-it-systems">Digital systems &amp; infrastructure <span class="info-icon" tabindex="0" data-tooltip="IT systems, certificates, registries. Typical: ~0.9&ndash;1.2 M per million population per year.">?</span></label><input type="number" id="cost-it-systems" min="0" step="10000" value="0" placeholder="e.g. 1,200,000" /></div>
+          <div class="field"><label for="cost-communications">Communications &amp; public information <span class="info-icon" tabindex="0" data-tooltip="Media campaigns, public information. Typical: ~0.6&ndash;0.8 M per million per year.">?</span></label><input type="number" id="cost-communications" min="0" step="10000" value="0" placeholder="e.g. 800,000" /></div>
+          <div class="field"><label for="cost-enforcement">Enforcement &amp; compliance <span class="info-icon" tabindex="0" data-tooltip="Inspection, enforcement staff, penalties. Typically the largest component. Typical: ~1.4&ndash;1.8 M per million per year.">?</span></label><input type="number" id="cost-enforcement" min="0" step="10000" value="0" placeholder="e.g. 1,800,000" /></div>
+          <div class="field"><label for="cost-compensation">Adverse-event monitoring &amp; compensation <span class="info-icon" tabindex="0" data-tooltip="Pharmacovigilance, compensation schemes. Typical: ~1.6&ndash;2.2 M per million per year.">?</span></label><input type="number" id="cost-compensation" min="0" step="10000" value="0" placeholder="e.g. 2,200,000" /></div>
+          <div class="field"><label for="cost-admin">Administration &amp; programme management <span class="info-icon" tabindex="0" data-tooltip="Policy design, legal work, coordination. Typical: ~0.6&ndash;0.8 M per million per year.">?</span></label><input type="number" id="cost-admin" min="0" step="10000" value="0" placeholder="e.g. 800,000" /></div>
+          <div class="field"><label for="cost-other">Other mandate-specific costs <span class="info-icon" tabindex="0" data-tooltip="Any additional costs directly attributable to the mandate.">?</span></label><input type="number" id="cost-other" min="0" step="10000" value="0" placeholder="e.g. 500,000" /></div>
+        </div>
+        <div class="action-row">
+          <button id="btn-apply-costs" class="btn btn-primary" type="button">Apply costs</button>
+          <button id="btn-load-default-costs" class="btn btn-outline" type="button">Load default costs</button>
+          <button id="btn-save-scenario-costs" class="btn btn-outline" type="button">Save scenario</button>
+        </div>
+      </div>
+      <div class="summary-panel">
+        <h2>Cost summary</h2>
+        <div class="kv-grid">
+          <div class="kv-row"><div class="kv-label">Total implementation cost</div><div id="summary-cost-total" class="kv-val kv-large">Not entered</div></div>
+          <div class="kv-row"><div class="kv-label">Largest cost component <span class="info-icon" tabindex="0" data-tooltip="The cost category contributing most to total costs.">?</span></div><div id="summary-cost-main" class="kv-val">Not entered</div></div>
+        </div>
+        <div class="action-row"><button id="btn-go-to-results" class="btn btn-ghost" type="button">Next: View results &rarr;</button></div>
+      </div>
+    </section>
+
+    <!-- ===== Step 4: Results ===== -->
+    <section id="tab-results" class="tab-pane">
+      <div class="page-header">
+        <div class="step-pill">Step 4</div>
+        <h1>Results</h1>
+        <p>Predicted support, health impact, benefit-cost metrics and sensitivity analysis for the current configuration.</p>
+      </div>
+
+      <div id="results-empty-state" class="empty-state empty-state-full">
+        <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <p class="empty-title">Results will appear here</p>
+        <p class="empty-body">Complete <strong>Step 2 (Configuration)</strong> and click <em>Apply configuration</em> to see results. Add costs in Step 3 to unlock the benefit-cost ratio and tornado chart.</p>
+        <button class="btn btn-primary" type="button" onclick="document.querySelector('[data-tab=tab-config]').click()">Go to Configuration &rarr;</button>
+      </div>
+
+      <div id="results-main-content" style="display:none">
+        <div class="metric-strip">
+          <div class="metric-tile"><div class="metric-label">Total lives saved</div><div id="result-lives-total" class="metric-val">--</div></div>
+          <div class="metric-tile"><div class="metric-label">Monetary benefit</div><div id="result-benefit-monetary" class="metric-val">--</div></div>
+          <div class="metric-tile"><div class="metric-label">Total cost</div><div id="result-cost-total" class="metric-val">--</div></div>
+          <div class="metric-tile"><div class="metric-label">Net benefit</div><div id="result-net-benefit" class="metric-val">--</div></div>
+          <div class="metric-tile metric-accent"><div class="metric-label">Benefit-cost ratio <span class="info-icon" tabindex="0" data-tooltip="Monetary benefit divided by total cost. Values above 1 suggest benefits exceed costs.">?</span></div><div id="result-bcr" class="metric-val">--</div></div>
+          <div class="metric-tile metric-accent"><div class="metric-label">Predicted public support <span class="info-icon" tabindex="0" data-tooltip="Mixed logit model probability that people support this mandate over no mandate.">?</span></div><div id="result-support" class="metric-val">--</div></div>
+        </div>
+
+        <div class="chip-strip" style="margin-bottom:16px">
+          <span id="status-support-r" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> Support: pending</span>
+          <span id="status-bcr-r" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> BCR: pending</span>
+          <span id="status-data-r" class="status-chip status-neutral"><span class="chip-icon" aria-hidden="true">&#9679;</span> Data: pending</span>
+        </div>
+
+        <div id="equity-badge" class="equity-alert" style="display:none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Equity concern flagged &mdash; see distributional notes in Step 2.
+        </div>
+
+        <div id="resultsNarrative" class="narrative-box"></div>
+        <p id="delta-summary" class="delta-note"></p>
+        <div id="policy-eval-summary" class="policy-eval" aria-live="polite"></div>
+
+        <div class="chart-grid">
+          <div class="chart-panel"><h3>Benefit-cost profile</h3><canvas id="chart-bcr" aria-label="Chart showing benefit, cost and net benefit" role="img"></canvas></div>
+          <div class="chart-panel"><h3>Predicted public support</h3><canvas id="chart-support" aria-label="Chart showing predicted public support and opt-out" role="img"></canvas><div class="chart-legend"><span class="leg-item"><span class="leg-line leg-50"></span>50% threshold</span><span class="leg-item"><span class="leg-line leg-70"></span>70% threshold</span></div></div>
+          <div class="chart-panel"><h3>Sensitivity tornado <span class="info-icon" tabindex="0" data-tooltip="Shows how BCR changes when each input varies by 20%. Longer bars = more influential.">?</span></h3><canvas id="chart-tornado" aria-label="Tornado chart showing BCR sensitivity to key inputs" role="img"></canvas><p id="tornado-note" class="chart-note">Apply costs to see BCR sensitivity.</p></div>
+          <div class="chart-panel"><h3>Lives-saved equivalents (MRS)</h3><canvas id="chart-mrs" aria-label="Chart showing lives-saved equivalents for current configuration" role="img"></canvas></div>
+        </div>
+
+        <div class="form-card" style="margin-top:16px">
+          <h2>Additional health metrics</h2>
+          <div class="kv-grid kv-3col">
+            <div class="kv-row"><div class="kv-label">Hospitalisations averted</div><div id="result-hosp-averted" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">ICU admissions averted</div><div id="result-icu-averted" class="kv-val">--</div></div>
+            <div class="kv-row"><div class="kv-label">Working days saved</div><div id="result-workdays-saved" class="kv-val">--</div></div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button id="btn-save-scenario-results" class="btn btn-primary" type="button">Save this scenario</button>
+          <button id="btn-print-results" class="btn btn-outline" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print / PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>Uncertainty ranges</h2>
+        <p class="field-note" style="margin-bottom:12px">Set low, central and high assumptions for lives saved per 100,000 to see how results move. A quick structured range for discussion.</p>
+        <div class="field-grid field-3col">
+          <div class="field"><label for="unc-lives-low">Low assumption <span class="info-icon" tabindex="0" data-tooltip="Conservative epidemiological assumption.">?</span></label><input type="number" id="unc-lives-low" min="0" max="100" step="1" placeholder="e.g. 10" /></div>
+          <div class="field"><label for="unc-lives-central">Central assumption <span class="info-icon" tabindex="0" data-tooltip="Best-estimate epidemiological assumption.">?</span></label><input type="number" id="unc-lives-central" min="0" max="100" step="1" placeholder="e.g. 25" /></div>
+          <div class="field"><label for="unc-lives-high">High assumption <span class="info-icon" tabindex="0" data-tooltip="Optimistic epidemiological assumption.">?</span></label><input type="number" id="unc-lives-high" min="0" max="100" step="1" placeholder="e.g. 40" /></div>
+        </div>
+        <div class="unc-grid">
+          <div class="unc-cell"><div class="unc-label">Range: total lives saved</div><div id="unc-summary-lives" class="unc-text">Enter values above to see ranges.</div></div>
+          <div class="unc-cell"><div class="unc-label">Range: predicted support</div><div id="unc-summary-support" class="unc-text">Not set</div></div>
+          <div class="unc-cell"><div class="unc-label">Range: benefit-cost ratio</div><div id="unc-summary-bcr" class="unc-text">Not set</div></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>Lives-saved equivalents (MRS)</h2>
+        <div class="mrs-explainer">
+          <strong>How to read this table:</strong> Each value shows how many expected lives saved per 100,000 would be equivalent, in terms of public acceptability, to a change in mandate design.
+          <span class="mrs-neg">Positive values</span> = less preferred (that design feature makes the mandate harder to accept).
+          <span class="mrs-pos">Negative values</span> = more preferred (that feature makes the mandate easier to accept).
+        </div>
+        <div class="table-scroll">
+          <table id="mrs-table" class="data-table">
+            <thead><tr><th>Change in mandate design</th><th>Lives-saved equivalent (per 100k)</th><th>Interpretation</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p id="mrsNarrative" class="chart-note" style="margin-top:10px">Configure a mandate to see lives-saved equivalents for design choices.</p>
+      </div>
+
+      <div class="disclaimer-strip">
+        Results are based on stated-preference data and simple cost-benefit calculations. They provide structured evidence but do not determine whether a mandate is appropriate. Equity and feasibility require separate qualitative assessment.
+      </div>
+    </section>
+
+    <!-- ===== Step 5: Scenarios ===== -->
+    <section id="tab-scenarios" class="tab-pane">
+      <div class="page-header">
+        <div class="step-pill">Step 5</div>
+        <h1>Scenarios &amp; exports</h1>
+        <p>Pin up to three scenarios for comparison, then export to CSV, Word or PDF.</p>
+      </div>
+      <div class="form-card" id="scenario-dashboard-card">
+        <h2>Comparison dashboard</h2>
+        <p class="field-note" style="margin-bottom:12px">Pin up to three saved scenarios to compare support, BCR, lives saved and cost. The radar chart and traffic-light stripes update automatically.</p>
+        <div class="dashboard-layout">
+          <div class="dashboard-chart"><canvas id="pinnedRadarChart" aria-label="Radar chart comparing pinned scenarios" role="img"></canvas></div>
+          <div class="dashboard-side">
+            <div id="pinned-scenarios-summary" class="pinned-list"></div>
+            <div class="tl-legend"><span class="tl-pill tl-green">&#10003; Favourable</span><span class="tl-pill tl-amber">! Intermediate</span><span class="tl-pill tl-red">&#10007; Unfavourable</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h2>Saved scenarios</h2>
+        <p class="field-note" style="margin-bottom:10px">Click any row to populate the briefing below. Faded rows have incomplete cost data.</p>
+        <div class="table-scroll">
+          <table id="scenarios-table" class="data-table"><thead><tr><th>#</th><th>Country</th><th>Outbreak</th><th>Scope</th><th>Exemptions</th><th>Coverage</th><th>Lives/100k</th><th>Lives saved</th><th>Benefit</th><th>Cost</th><th>Net benefit</th><th>BCR</th><th>Support</th><th>Equity</th><th>Pin</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div class="action-row">
+          <button id="btn-export-csv" class="btn btn-outline" type="button">CSV</button>
+          <button id="btn-export-excel" class="btn btn-outline" type="button">Excel-readable</button>
+          <button id="btn-export-word" class="btn btn-outline" type="button">Word briefing</button>
+          <button id="btn-export-pdf" class="btn btn-outline" type="button">Summary CSV</button>
+          <button id="btn-clear-storage" class="btn btn-danger" type="button">Clear all</button>
+        </div>
+      </div>
+      <div class="form-card">
+        <h2>Scenario briefing text</h2>
+        <p class="field-note" style="margin-bottom:10px">Click a row above to populate this from a saved scenario. Paste directly into emails or briefing documents.</p>
+        <textarea id="scenario-briefing-text" rows="10" aria-label="Scenario briefing text"></textarea>
+        <div class="action-row"><button id="btn-copy-briefing" class="btn btn-primary" type="button">Copy briefing text</button></div>
+      </div>
+    </section>
+
+    <!-- ===== Briefings & AI ===== -->
+    <section id="tab-briefings" class="tab-pane">
+      <div class="page-header">
+        <h1>Briefings &amp; AI generation</h1>
+        <p>Generate structured policy briefings using AI, or copy prompt templates for Copilot and ChatGPT.</p>
+      </div>
+      <div class="form-card ai-card">
+        <div class="ai-header">
+          <div class="ai-badge-icon">AI</div>
+          <div>
+            <h2>Generate briefing with AI</h2>
+            <p class="field-note">Use the auto-generated prompt below with ChatGPT or Microsoft Copilot to produce a structured policy briefing. No API key required &mdash; simply copy the prompt and open your preferred AI assistant.</p>
+          </div>
+        </div>
+        <p class="field-note" style="margin:14px 0 10px"><strong>How to use:</strong> Select a prompt type below, copy the prompt, then click one of the buttons to open the AI assistant in a new tab and paste the prompt.</p>
+        <div class="ai-launch-row">
+          <button id="btn-open-chatgpt" class="btn btn-ai-chatgpt" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Open ChatGPT
+          </button>
+          <button id="btn-open-ai" class="btn btn-ai-copilot" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+            Open Microsoft Copilot
+          </button>
+          <button id="btn-copy-ai-prompt" class="btn btn-outline" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy prompt
+          </button>
+        </div>
+      </div>
+      <div class="form-card">
+        <h2>Policy briefing template</h2>
+        <p class="field-note" style="margin-bottom:10px">Auto-populated from the current configuration, settings, costs and notes. Edit before use.</p>
+        <textarea id="briefing-template" rows="14" aria-label="Policy briefing template"></textarea>
+        <div class="action-row"><button id="btn-copy-briefing-template" class="btn btn-primary" type="button">Copy briefing template</button></div>
+      </div>
+      <div class="form-card">
+        <h2>Prompt templates for ChatGPT / Copilot</h2>
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="prompt-mode" id="prompt-mode-single" value="single" checked /><span>Single-scenario brief</span></label>
+          <label class="radio-opt"><input type="radio" name="prompt-mode" id="prompt-mode-comparative" value="comparative" /><span>Comparative memo (uses saved scenarios)</span></label>
+        </div>
+        <p id="prompt-mode-note" class="field-note" style="margin:8px 0 12px">Comparative memos require at least two saved scenarios. Falls back to single-scenario if fewer are available.</p>
+        <textarea id="ai-prompt" rows="18" aria-label="AI prompt template"></textarea>
+      </div>
+    </section>
+
+    <!-- ===== Appendix ===== -->
+    <section id="tab-appendix" class="tab-pane">
+      <div class="page-header"><h1>Technical appendix</h1><p>Full documentation of the data sources, statistical models and cost-benefit calculations used in this tool.</p></div>
+      <div class="form-card">
+        <h2>Contents</h2>
+        <ul class="content-list">
+          <li>Discrete choice experiment summary and mixed logit / latent class models</li>
+          <li>Coefficient tables for Australia, France and Italy under mild and severe outbreak frames</li>
+          <li>Formal expression for model-based predicted support and numerical approximation</li>
+          <li>Cost taxonomy, benefit metric assumptions and country-specific calibration suggestions</li>
+          <li>Worked examples for Italy (severe), Australia (mild) and France (mild)</li>
+          <li>Changelog and version history</li>
+        </ul>
+        <div class="action-row"><a href="technical-appendix.html" target="_blank" rel="noopener" class="btn btn-primary">Open full appendix</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left"><strong>eMANDEVAL Future</strong> &mdash; Vaccine mandate decision aid &mdash; v3.0.0</div>
+      <div class="footer-right">Evidence-informed policy tool &middot; Not a substitute for legal, ethical or political judgement</div>
+    </div>
+  </footer>
+
+  <!-- Mobile bottom nav -->
+  <nav class="mobile-nav" aria-label="Mobile quick navigation">
+    <button class="mnav-btn active" data-tab="tab-intro" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="mnav-btn" data-tab="tab-config" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M20 12h-2M6 12H4M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93M12 2v2M12 20v2"/></svg>
+      <span>Configure</span>
+    </button>
+    <button class="mnav-btn" data-tab="tab-results" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Results</span>
+    </button>
+    <button class="mnav-btn" data-tab="tab-scenarios" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Scenarios</span>
+    </button>
+    <button class="mnav-btn" data-tab="tab-briefings" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span>Briefings</span>
+    </button>
+  </nav>
+
+  <div id="globalTooltip" class="tooltip tooltip-hidden" role="tooltip"></div>
+  <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

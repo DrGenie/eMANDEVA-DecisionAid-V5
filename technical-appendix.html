@@ -150,11 +150,11 @@
   <!-- ===== OVERVIEW ===== -->
   <section id="overview" class="doc-section anchor">
     <h2>What is eMANDEVAL Future?</h2>
-    <p>eMANDEVAL Future is a browser-based decision aid designed to help public health analysts, policy advisers, and government officials explore and evaluate potential future vaccine mandate designs. It is not a forecasting tool, and it does not produce legally binding recommendations. Instead, it provides a structured, evidence-informed framework for examining how different mandate configurations might perform across three key dimensions: <strong>public acceptability</strong>, <strong>epidemiological impact</strong>, and <strong>economic efficiency</strong>.</p>
-    <p>The tool is grounded in a discrete choice experiment (DCE) conducted with members of the public in Australia, France, and Italy. From this study, mixed logit preference models were estimated, and these models form the statistical backbone of the predicted support calculations in the tool. All other inputs &mdash; including population size, value per life saved, and implementation costs &mdash; are entered by the analyst and are intended to be indicative rather than definitive.</p>
+    <p>eMANDEVAL Future is a browser-based decision aid designed to help public health analysts and researchers explore and evaluate potential future vaccine mandate designs. It is not a forecasting tool, and it does not produce legally binding recommendations. Instead, it provides a structured, evidence-informed framework for examining how different mandate configurations might perform across three key dimensions: <strong>public acceptability</strong>, <strong>epidemiological impact</strong>, and <strong>economic efficiency</strong>.</p>
+    <p>The tool is grounded in a discrete choice experiment (DCE) conducted with members of the public in Australia, France, and Italy. From this study, mixed logit preference models were estimated, and these models form the statistical backbone of the predicted support calculations in the tool. All other inputs &ndash; including population size, value per life saved, and implementation costs &ndash; are entered by the analyst and are intended to be indicative rather than definitive.</p>
 
     <div class="tip-card">
-      <strong>Who is this tool for?</strong> The tool is designed for policy analysts, health economists, public health advisers, and researchers who need to explore mandate design options systematically. No statistical background is required to use it, although the worked examples and methods sections of this document will help you interpret results with appropriate nuance.
+      <strong>Who is this tool for?</strong> The tool is designed for policy analysts, health economists, and researchers who need to explore mandate design options systematically. No statistical background is required to use it, although the worked examples and methods sections of this document will help you interpret results with appropriate nuance.
     </div>
 
     <h3>What the tool can and cannot do</h3>
@@ -228,17 +228,17 @@
     <p>This is the number of people who would be subject to the mandate and exposed to its benefits. Default values when you click <em>Restore country defaults</em> are: Australia 25,500,000; France 67,000,000; Italy 60,000,000. You may enter any value appropriate to your analysis (e.g. a state or regional population).</p>
 
     <h3>Currency label</h3>
-    <p>A text label used in all monetary outputs (e.g. AUD, EUR). This is automatically set to AUD for Australia and EUR for France and Italy when you apply a configuration. It does not affect calculations &mdash; it is purely for display.</p>
+    <p>A text label used in all monetary outputs (e.g. AUD, EUR). This is automatically set to AUD for Australia and EUR for France and Italy when you apply a configuration. It does not affect calculations &ndash; it is purely for display.</p>
 
     <h3>Benefit metric</h3>
     <p>The benefit metric determines how the value of a life saved (or equivalent health gain) is expressed. The most common choice for government regulatory appraisal is the <strong>value of a statistical life (VSL)</strong>, which represents the aggregated willingness to pay for a marginal reduction in mortality risk across a defined population. The VSL is not the value of any individual&rsquo;s life; it is a population-level economic construct used in policy analysis.</p>
-    <p>Other options &mdash; VSLY (value of a statistical life-year), QALY, health system savings, and working days &mdash; are provided for sensitivity testing and comparative purposes. Switching the metric will prompt you to update the value per life saved to match.</p>
+    <p>Other options &ndash; VSLY (value of a statistical life-year), QALY, health system savings, and working days &ndash; are provided for sensitivity testing and comparative purposes. Switching the metric will prompt you to update the value per life saved to match.</p>
 
     <h3>Value per life saved</h3>
     <p>This is the monetary value attached to each life saved (or equivalent health gain). Recommended values for regulatory appraisal vary by country and are periodically updated by government bodies. The tool&rsquo;s default is AUD 5,400,000 (approximate mid-point Australian Government guidance). Use the <em>Value calibration</em> section to store an updated figure for your session.</p>
 
     <h3>Additional health metrics</h3>
-    <p>These optional fields allow the tool to display approximate figures for hospitalisations averted, ICU admissions averted, and working days saved alongside the main results. They do not affect the BCR calculation. Enter conversion ratios (e.g. hospitalisations averted per life saved) or override with direct per-100,000 inputs if you have specific epidemiological estimates.</p>
+    <p>These optional fields allow the tool to display approximate figures for hospitalisations averted, ICU admissions averted, and working days saved alongside the main results. They do not affect the BCR calculation. Enter conversion ratios (e.g., hospitalisations averted per life saved) or override with direct per-100,000 inputs if you have specific epidemiological estimates.</p>
 
     <h3>Traffic-light thresholds</h3>
     <p>The status chips (green/amber/red) that appear throughout the tool are based on support and BCR thresholds. Defaults are 50% and 70% for support, and 0.8 and 1.0 for BCR. You can adjust these to reflect your organisation&rsquo;s decision criteria and the settings are saved in your browser.</p>
@@ -259,7 +259,7 @@
     <p><strong>High-risk occupations only</strong> covers people in jobs with elevated exposure risk or critical public roles, such as healthcare workers, emergency responders, and aged-care staff. <strong>All occupations &amp; public spaces</strong> extends the mandate to anyone working or entering public venues including cinemas, shopping centres, restaurants, and public transport. Broader scope generally reduces predicted support.</p>
 
     <h3>Exemption policy</h3>
-    <p>Three levels of exemption are available. <strong>Medical only</strong> restricts exemptions to those with certified clinical reasons such as severe allergies. <strong>Medical + religious</strong> adds exemptions for documented religious beliefs with verification. <strong>Medical + religious + personal belief</strong> allows opt-outs on any of these grounds. Broader exemptions generally reduce the stringency of the mandate and affect predicted support &mdash; the direction varies by country and outbreak frame, as captured in the mixed logit coefficients.</p>
+    <p>Three levels of exemption are available. <strong>Medical only</strong> restricts exemptions to those with certified clinical reasons such as severe allergies. <strong>Medical + religious</strong> adds exemptions for documented religious beliefs with verification. <strong>Medical + religious + personal belief</strong> allows opt-outs on any of these grounds. Broader exemptions generally reduce the stringency of the mandate and affect predicted support &ndash; the direction varies by country and outbreak frame, as captured in the mixed logit coefficients.</p>
 
     <h3>Coverage threshold to lift the mandate</h3>
     <p>This is the vaccination coverage level at which the mandate would be lifted. Thresholds of 50%, 70%, and 90% are provided. A higher threshold implies a longer duration and greater reach of the mandate, which affects both public acceptability and implementation costs.</p>
@@ -274,7 +274,7 @@
     <p>The optional decision lens helps frame the analysis around a specific question, such as &ldquo;maximise public support subject to a minimum BCR&rdquo;. Selecting a lens generates tailored guidance text below the form and adapts the policy evaluation summary in the Results tab. It does not affect the underlying calculations.</p>
 
     <h3>Equity and distributional notes</h3>
-    <p>Use these fields to record which groups or sectors would be most affected by the mandate. These notes are saved with each scenario, included in Word exports, and injected into AI briefing prompts. Noting equity considerations here does not produce quantitative equity adjustments &mdash; that requires a separate distributional impact assessment.</p>
+    <p>Use these fields to record which groups or sectors would be most affected by the mandate. These notes are saved with each scenario, included in Word exports, and injected into AI briefing prompts. Noting equity considerations here does not produce quantitative equity adjustments &ndash; that requires a separate distributional impact assessment.</p>
   </section>
 
   <!-- ===== STEP 3 ===== -->
@@ -285,12 +285,12 @@
     <h3>Cost components</h3>
     <p>The tool uses six cost categories drawn from published implementation experience with vaccination mandates and related public health programmes:</p>
     <ul>
-      <li><strong>Digital systems &amp; infrastructure</strong> &mdash; Certification systems, vaccination registries, digital verification platforms. Typical range: 0.9&ndash;1.2 million per million population per year.</li>
-      <li><strong>Communications &amp; public information</strong> &mdash; Public awareness campaigns, information materials, helplines. Typical range: 0.6&ndash;0.8 million per million per year.</li>
-      <li><strong>Enforcement &amp; compliance</strong> &mdash; Inspection, penalties administration, legal proceedings. This is typically the largest component. Typical range: 1.4&ndash;1.8 million per million per year.</li>
-      <li><strong>Adverse-event monitoring &amp; compensation</strong> &mdash; Pharmacovigilance, no-fault compensation schemes, claims processing. Typical range: 1.6&ndash;2.2 million per million per year.</li>
-      <li><strong>Administration &amp; programme management</strong> &mdash; Policy development, legal work, inter-agency coordination. Typical range: 0.6&ndash;0.8 million per million per year.</li>
-      <li><strong>Other mandate-specific costs</strong> &mdash; Any additional costs directly attributable to the mandate that do not fit the above categories.</li>
+      <li><strong>Digital systems &amp; infrastructure</strong> &ndash; Certification systems, vaccination registries, digital verification platforms. Typical range: 0.9&ndash;1.2 million per million population per year.</li>
+      <li><strong>Communications &amp; public information</strong> &ndash; Public awareness campaigns, information materials, helplines. Typical range: 0.6&ndash;0.8 million per million per year.</li>
+      <li><strong>Enforcement &amp; compliance</strong> &ndash; Inspection, penalties administration, legal proceedings. This is typically the largest component. Typical range: 1.4&ndash;1.8 million per million per year.</li>
+      <li><strong>Adverse-event monitoring &amp; compensation</strong> &ndash; Pharmacovigilance, no-fault compensation schemes, claims processing. Typical range: 1.6&ndash;2.2 million per million per year.</li>
+      <li><strong>Administration &amp; programme management</strong> &ndash; Policy development, legal work, inter-agency coordination. Typical range: 0.6&ndash;0.8 million per million per year.</li>
+      <li><strong>Other mandate-specific costs</strong> &ndash; Any additional costs directly attributable to the mandate that do not fit the above categories.</li>
     </ul>
     <div class="tip-card">
       <strong>Tip:</strong> Click <strong>Load default costs</strong> after applying a configuration in Step 2 to populate evidence-based starting values scaled to your country, population, and analysis horizon. These defaults are illustrative starting points, not official government estimates.
@@ -307,12 +307,12 @@
 
     <h3>Headline metric tiles</h3>
     <ul>
-      <li><strong>Total lives saved</strong> &mdash; Calculated as (lives saved per 100,000) &times; (population &divide; 100,000). This is a direct scaling of your epidemiological input, not a model-predicted figure.</li>
-      <li><strong>Monetary benefit</strong> &mdash; Total lives saved &times; value per life saved. This is the gross monetary value of the expected health gain.</li>
-      <li><strong>Total cost</strong> &mdash; Sum of all implementation cost components entered in Step 3.</li>
-      <li><strong>Net benefit</strong> &mdash; Monetary benefit minus total cost. A positive net benefit suggests the intervention generates more value than it costs, given the assumptions used.</li>
-      <li><strong>Benefit-cost ratio (BCR)</strong> &mdash; Monetary benefit &divide; total cost. A BCR above 1.0 means each unit of spending generates more than one unit of benefit value. A BCR below 1.0 does not necessarily mean the mandate is unjustifiable &mdash; it may reflect conservative cost assumptions or a low lives-saved estimate.</li>
-      <li><strong>Predicted public support</strong> &mdash; The model-based probability that the public would choose this mandate over no mandate, expressed as a percentage. See the Methods section for technical details.</li>
+      <li><strong>Total lives saved</strong> &ndash; Calculated as (lives saved per 100,000) &times; (population &divide; 100,000). This is a direct scaling of your epidemiological input, not a model-predicted figure.</li>
+      <li><strong>Monetary benefit</strong> &ndash; Total lives saved &times; value per life saved. This is the gross monetary value of the expected health gain.</li>
+      <li><strong>Total cost</strong> &ndash; Sum of all implementation cost components entered in Step 3.</li>
+      <li><strong>Net benefit</strong> &ndash; Monetary benefit minus total cost. A positive net benefit suggests the intervention generates more value than it costs, given the assumptions used.</li>
+      <li><strong>Benefit-cost ratio (BCR)</strong> &ndash; Monetary benefit &divide; total cost. A BCR above 1.0 means each unit of spending generates more than one unit of benefit value. A BCR below 1.0 does not necessarily mean the mandate is unjustifiable &ndash; it may reflect conservative cost assumptions or a low lives-saved estimate.</li>
+      <li><strong>Predicted public support</strong> &ndash; The model-based probability that the public would choose this mandate over no mandate, expressed as a percentage. See the Methods section for technical details.</li>
     </ul>
 
     <h3>Status chips</h3>
@@ -324,7 +324,7 @@
     <h3>Charts</h3>
 
     <h4>Benefit-cost profile (bar chart)</h4>
-    <p>Shows the three monetary quantities &mdash; total benefit, total cost, and net benefit &mdash; as colour-coded bars. Green bars represent positive values (benefit, positive net benefit); red represents cost or negative net benefit. The y-axis is labelled with the currency selected in Step 1.</p>
+    <p>Shows the three monetary quantities &ndash; total benefit, total cost, and net benefit &ndash; as colour-coded bars. Green bars represent positive values (benefit, positive net benefit); red represents cost or negative net benefit. The y-axis is labelled with the currency selected in Step 1.</p>
 
     <h4>Predicted public support (bar chart)</h4>
     <p>Shows the predicted split between the share of the population expected to support the mandate (&ldquo;Support mandate&rdquo;) and the share expected to prefer no mandate (&ldquo;Opt-out&rdquo;). The colour of the support bar reflects the threshold assessment: teal = high support, amber = medium, red = low.</p>
@@ -354,10 +354,10 @@
 
     <h3>Exports</h3>
     <ul>
-      <li><strong>CSV</strong> &mdash; A comma-separated file of all saved scenarios suitable for analysis in Excel or R.</li>
-      <li><strong>Excel-readable</strong> &mdash; The same file with an .xlsx.csv extension for immediate opening in Excel.</li>
-      <li><strong>Word briefing</strong> &mdash; A structured .doc file containing a formatted scenario-by-scenario brief for each saved scenario, suitable for opening in Microsoft Word.</li>
-      <li><strong>Print / PDF</strong> &mdash; Opens the browser&rsquo;s print dialogue with a clean print stylesheet applied. The navigation, banners, and form tabs are hidden; only the results are printed.</li>
+      <li><strong>CSV</strong> &ndash; A comma-separated file of all saved scenarios suitable for analysis in Excel or R.</li>
+      <li><strong>Excel-readable</strong> &ndash; The same file with an .xlsx.csv extension for immediate opening in Excel.</li>
+      <li><strong>Word briefing</strong> &ndash; A structured .doc file containing a formatted scenario-by-scenario brief for each saved scenario, suitable for opening in Microsoft Word.</li>
+      <li><strong>Print / PDF</strong> &ndash; Opens the browser&rsquo;s print dialogue with a clean print stylesheet applied. The navigation, banners, and form tabs are hidden; only the results are printed.</li>
     </ul>
 
     <h3>Scenario briefing text</h3>
@@ -370,7 +370,7 @@
     <p>This tab provides tools for generating and exporting formal policy briefings.</p>
 
     <h3>Generating a briefing with ChatGPT or Microsoft Copilot</h3>
-    <p>The tool automatically constructs a detailed prompt from your current configuration, settings, costs, and saved scenarios. You do not need to write or edit the prompt &mdash; it is ready to use. Click <strong>Open ChatGPT</strong> or <strong>Open Microsoft Copilot</strong> to copy the prompt to your clipboard and open the AI assistant in a new browser tab. Paste the prompt using Ctrl+V (Windows) or Cmd+V (Mac). The AI will produce a formal policy brief in continuous prose based on your data.</p>
+    <p>The tool automatically constructs a detailed prompt from your current configuration, settings, costs, and saved scenarios. You do not need to write or edit the prompt &ndash; it is ready to use. Click <strong>Open ChatGPT</strong> or <strong>Open Microsoft Copilot</strong> to copy the prompt to your clipboard and open the AI assistant in a new browser tab. Paste the prompt using Ctrl+V (Windows) or Cmd+V (Mac). The AI will produce a formal policy brief in continuous prose based on your data.</p>
 
     <div class="tip-card">
       <strong>Single-scenario brief vs comparative memo:</strong> Select &ldquo;Single-scenario brief&rdquo; to generate a brief for the current (or most recently saved) scenario. Select &ldquo;Comparative memo&rdquo; to generate a brief that compares all saved scenarios; this requires at least two saved scenarios. The prompt textarea updates automatically when you switch between these modes.
@@ -424,7 +424,7 @@
 
     <p><em>Notes: ASC = alternative-specific constant. Ex MedRel = medical plus religious exemptions. Ex MedRelPers = medical, religious and personal belief exemptions. Cov 70%, Cov 90% = coverage thresholds relative to 50% baseline. Lives = coefficient on expected lives saved per 100,000.</em></p>
 
-    <h3>Marginal rate of substitution (MRS) &mdash; lives-saved equivalents</h3>
+    <h3>Marginal rate of substitution (MRS) &ndash; lives-saved equivalents</h3>
     <p>The MRS represents how many expected lives saved per 100,000 would be equivalent, in terms of public acceptability, to a one-unit change in a mandate design attribute. It is calculated as the negative ratio of the attribute coefficient to the lives-saved coefficient:</p>
     <div class="formula-card">
       MRS(attribute, lives) = &minus; &beta;<sub>attribute</sub> / &beta;<sub>lives</sub>
@@ -484,7 +484,7 @@
         <div class="value">~42&ndash;46%</div>
       </div>
       <div class="example-interp">
-        <strong>Interpretation:</strong> France&rsquo;s mild frame shows more complex preferences. The positive ASC Opt-out (0.307) means there is a baseline tendency to prefer no mandate in a mild outbreak. The broad scope coefficient (&minus;0.160) and broad exemptions coefficient (&minus;0.124) both reduce support further. With only 10 lives saved per 100,000, the lives coefficient (0.049) contributes modestly. The result &mdash; below 50% predicted support &mdash; would be flagged as &ldquo;low support&rdquo; by the tool. This does not mean the mandate is wrong, but it suggests that in a mild outbreak, a broad French mandate with wide exemptions would face significant public acceptability challenges.
+        <strong>Interpretation:</strong> France&rsquo;s mild frame shows more complex preferences. The positive ASC Opt-out (0.307) means there is a baseline tendency to prefer no mandate in a mild outbreak. The broad scope coefficient (&minus;0.160) and broad exemptions coefficient (&minus;0.124) both reduce support further. With only 10 lives saved per 100,000, the lives coefficient (0.049) contributes modestly. The result &ndash; below 50% predicted support &ndash; would be flagged as &ldquo;low support&rdquo; by the tool. This does not mean the mandate is wrong, but it suggests that in a mild outbreak, a broad French mandate with wide exemptions would face significant public acceptability challenges.
       </div>
     </div>
 
@@ -494,8 +494,8 @@
     <div class="example-box">
       <h4>Scenario comparison</h4>
       <div class="example-row">
-        <div class="example-kv"><div class="label">Scenario A &mdash; Strict</div><div class="value">All occupations, medical only, 90% threshold, 35 lives/100k</div></div>
-        <div class="example-kv"><div class="label">Scenario B &mdash; Lenient</div><div class="value">High-risk only, medical+religious+personal, 50% threshold, 10 lives/100k</div></div>
+        <div class="example-kv"><div class="label">Scenario A &ndash; Strict</div><div class="value">All occupations, medical only, 90% threshold, 35 lives/100k</div></div>
+        <div class="example-kv"><div class="label">Scenario B &ndash; Lenient</div><div class="value">High-risk only, medical+religious+personal, 50% threshold, 10 lives/100k</div></div>
       </div>
       <div class="example-result">
         <div class="label">Approximate support</div>
@@ -512,7 +512,7 @@
     <h2>Interpretation guide</h2>
 
     <h3>How to read a benefit-cost ratio</h3>
-    <p>A BCR of 1.5 means that for every AUD (or EUR) spent on mandate implementation, approximately AUD 1.50 of value is generated in health terms (as measured by the VSL or chosen benefit metric). This is not a measure of profit; it is a summary of how efficiently the mandate converts implementation expenditure into health value. BCRs above 1.0 suggest that, under the stated assumptions, the mandate is cost-effective in health economic terms. BCRs below 1.0 do not necessarily mean the mandate should not proceed &mdash; they may reflect incomplete cost estimates, a conservative lives-saved assumption, or a low VSL.</p>
+    <p>A BCR of 1.5 means that for every AUD (or EUR) spent on mandate implementation, approximately AUD 1.50 of value is generated in health terms (as measured by the VSL or chosen benefit metric). This is not a measure of profit; it is a summary of how efficiently the mandate converts implementation expenditure into health value. BCRs above 1.0 suggest that, under the stated assumptions, the mandate is cost-effective in health economic terms. BCRs below 1.0 do not necessarily mean the mandate should not proceed &ndash; they may reflect incomplete cost estimates, a conservative lives-saved assumption, or a low VSL.</p>
     <p>The BCR is highly sensitive to three inputs: the value per life saved, the lives saved per 100,000, and the total implementation cost. Use the sensitivity tornado chart to see which of these matters most in your specific scenario. Where uncertainty is high, present a range rather than a point estimate.</p>
 
     <h3>How to read predicted public support</h3>
@@ -581,7 +581,7 @@
 </div>
 
 <footer class="doc-footer">
-  eMANDEVAL Future v3.1.0 &mdash; Technical Appendix &amp; User Guide &mdash;
+  eMANDEVAL Future v3.1.0 &ndash; Technical Appendix &amp; User Guide &ndash;
   <a href="index.html">Return to tool</a>
 </footer>
 
